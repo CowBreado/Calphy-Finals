@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculus Based Physics Finals Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <!-- To implement the hiding and displaying of the pages within the same url-->
+    <style>
+        .page {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <main id="home" style="background-color:rgb(255, 255, 255)">
+        <nav>
+            <div class="container--sidebar bg-dark fs-6">
+
+                <!--  Website Sidebar Contents  -->
+                <div class="text-center fw-bold">
+                    <p class="text-white mb-0 p-2">CONTENTS</p>
+                </div>
+
+
+                <div class="sidebar--item">
+                    <a class="text-light" href="/index.html">
+                        <p class="text-white mb-0 text-center">Home</p>
+                    </a>
+                </div>
+
+                <div class="sidebar--item">
+                    <a class="text-light" href="/index.html">
+                        <p class="text-white mb-0 text-center">Lesson 1: Archimedes Principle</p>
+                    </a>
+                </div>
+
+                <div class="sidebar--item">
+                    <a class="text-light" href="/index.html">
+                        <p class="text-white mb-0 text-center">Lesson 2: Bernoulli's Principle</p>
+                    </a>
+                </div>
+
+                <div class="sidebar--item">
+                    <a class="text-light" href="/archimedes/index.html">
+                        <p class="text-white mb-0 text-center">Simulation: Archimedes Principle</p>
+                    </a>
+                </div>
+
+
+                <div class="sidebar--item">
+                    <p class="text-white mb-0 text-center">Visuals: Bernoulli's Principle</p>
+                </div>
+
+                <div class="sidebar--item">
+                    <p class="text-white mb-0 text-center">Practice Quiz</p>
+                </div>
+            </div>
+        </nav>
+
+
+
+
+        <section id="content" class="page active" style="padding-left:4rem;padding-right:4rem">
+            <div class="container" id="home">
+                <h1 class="fw-semibold text-center  mt-3 mb-3 text-muted">Lesson 1: Archimedes Principle</h1>
+                <p class="text-muted text-center" style="font-style:italic">“Give me a place to stand, and I will move
+                    the world.”<br>-Archimedes</p>
+                <h3 class="text-dark mt-5 mb-3 fw-bold text-muted">Topics Covered</h3>
+                <ul>
+                    <li class="text-color-cus fw-semibold">
+                        What is Archimedes Principle
+                    </li>
+                    <li class="text-color-cus fw-semibold mt-3">
+                        Archimedes’ Principle Explanation
+                    </li>
+                    <li class="text-color-cus fw-semibold mt-3">
+                        Archimedes’ Principle Formula
+                    </li>
+                </ul>
+                </p>
+                <h3 class="mt-5 mb-3 fw-bold text-muted">What is Archimedes Principle</h3>
+                <p class="text-muted fw-semibold">
+                    Archimedes’ principle states that:
+                    “The upward buoyant force that is exerted on a body immersed in a fluid, whether partially or fully
+                    submerged, is equal to the weight of the fluid that the body displaces and acts in the upward
+                    direction at the center of mass of the displaced fluid”.
+                </p>
+
+                <p class="text-muted fw-semibold">
+                    The value of thrust force is given by the Archimedes law which Archimedes of Syracuse of Greece
+                    discovered. When an object is partially or fully immersed in a liquid, the apparent loss of weight
+                    is
+                    equal to the weight of the liquid displaced by it.
+                </p>
+
+                <div class="text-center">
+                    <img src="data:image/jpeg;base64,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"
+                        alt="A scenic view" class="img-fluid rounded shadow mt-4 mb-3" style="height: 15rem;">
+                    <p class="text-muted text-center" style="font-style:italic">figure 1. Example of Archimedes
+                        Principle</p>
+                </div>
+
+                <p class="mt-4 text-muted fw-semibold">If you look at the figure, the weight due to gravity is opposed
+                    by the thrust provided by the fluid.
+                    The object inside the liquid only feels the total force acting on it as the weight. Because the
+                    actual gravitational force is decreased by the liquid’s upthrust, the object feels as though its
+                    weight is reduced. The apparent weight is thus given by:
+                </p>
+
+                <div style="border: 1px solid; width: 50%; margin: 0 auto; padding: 10px; text-align: center;">
+                    <p class="text-muted fw-bold" style="text-align:center; margin: auto;">Apparent weight= Weight of
+                        object (in the air) – Thrust force (buoyancy)</p>
+                </div>
+
+                <p class="text-muted fw-semibold" style="text-align:center; margin: auto;margin-top: 10px;">Archimedes’
+                    principle tells us
+                    that the weight loss is equal to the weight of liquid the object displaces.
+                </p>
+                <h3 class="mt-5 mb-3 fw-bold text-muted">Archimedes' Principle Formula</h3>
+                <p>
+                In simple form, the Archimedes law states that the buoyant force on an object is equal to the weight of the fluid displaced by the object. Mathematically written as:
+                </p>
+                <div class="text-center">
+                    <img src="https://cdn.savemyexams.com/uploads/2020/09/4.2.4-Hydrostatic-pressure-equation.png"alt="A scenic view" class="text-center img-fluid rounded shadow mt-4 mb-3" style="height: 15rem;"class="img-fluid rounded shadow mt-4 mb-3">
+                </div> 
+                <br>
+                <br>
+            </div>
+
+            <!--
+            https://byjus.com/physics/archimedes-principle/#what-is-archimedes-principle
+            <a class="btn btn-dark" href="#" onclick="showPage('linalg')">Learn More</a>
+            -->
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+<script>
+    function showPage(id) {
+        // hide all
+        document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+        // show one
+        document.getElementById(id).classList.add('active');
+    }
+</script>
+
+</body>
+
+</html>
