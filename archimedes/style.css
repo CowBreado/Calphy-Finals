@@ -1,0 +1,37 @@
+main {
+  display: flex;
+}
+
+.sidebar {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar--header {
+  display: flex;
+}
+
+#matter-container {
+  flex-grow: 1;
+  height: 100vh;
+}
+
+#object-details {
+  display: flex;
+  flex-direction: column;
+  width: 16rem;
+}
+
+#object-details div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.text--details-none {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  text-align: center;
+}

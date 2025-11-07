@@ -1,0 +1,24 @@
+html{
+  scroll-behavior: smooth;
+}
+body{
+    padding-top: 70px;
+}
+/* Remove Scrollbar UI */
+body::-webkit-scrollbar {
+  display: none;           
+}
+/* Extra space so that the top nav bar doesnt cover the text when sliding to it. */
+#home, #about, #quiz, #archimedes, #bernoulli {
+  scroll-margin-top: 70px;
+}
+/* White Text Color */
+.text-color{
+    color:rgb(225, 225, 225);
+}
+/*  To create spaces within div to simulate scrolling  */
+.div-height{
+    height: 35rem; 
+}
+
+
