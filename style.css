@@ -1,24 +1,58 @@
-html{
-  scroll-behavior: smooth;
-}
-body{
-    padding-top: 70px;
-}
-/* Remove Scrollbar UI */
-body::-webkit-scrollbar {
-  display: none;           
-}
-/* Extra space so that the top nav bar doesnt cover the text when sliding to it. */
-#home, #about, #quiz, #archimedes, #bernoulli {
-  scroll-margin-top: 70px;
+body {
+  overflow: hidden;
 }
 /* White Text Color */
-.text-color{
-    color:rgb(225, 225, 225);
+.text-color{  
+    color: black;
+}
+.text-color-cus{  
+    color: black;
 }
 /*  To create spaces within div to simulate scrolling  */
 .div-height{
     height: 35rem; 
 }
 
+/* Remove underline display from anchor tag */
+a:link {
+  text-decoration: none;
+}
 
+main {
+  display: flex;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+section {
+  flex-grow: 1;
+  height: 100vh;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+section::-webkit-scrollbar {
+  display: none;
+
+}
+
+.container--sidebar {
+  position: sticky;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.sidebar--item {
+  min-width: 4rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 6.5rem;
+  padding-right: 6.5rem;
+}
+
+.sidebar--item:hover {
+  background-color: rgba(255, 255, 255, 0.33);
+  cursor: pointer;
+}
