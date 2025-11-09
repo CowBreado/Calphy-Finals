@@ -1,3 +1,6 @@
+html{
+  font-size: larger;
+}
 body {
   overflow: hidden;
 }
@@ -13,10 +16,6 @@ body {
     height: 35rem; 
 }
 
-/* Remove underline display from anchor tag */
-a:link {
-  text-decoration: none;
-}
 p, li{
   text-align: justify;
 }
@@ -38,6 +37,8 @@ section::-webkit-scrollbar {
 
 }
 
+
+
 .container--sidebar {
   position: sticky;
   inset: 0;
@@ -47,14 +48,42 @@ section::-webkit-scrollbar {
 }
 
 .sidebar--item {
-  min-width: 4rem;
+  min-width: 2rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  padding-left: 6.5rem;
-  padding-right: 6.5rem;
+  padding-left: 4.5rem;
+  padding-right: 4.5rem;
+  font-size:12px;
 }
 
 .sidebar--item:hover {
-  background-color: rgba(255, 255, 255, 0.33);
+  background-color: rgb(51, 51, 51);
   cursor: pointer;
 }
+
+
+.box{
+  border-width:1px;
+  border-style: solid;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+}
+
+
+
+
+
+
+/* Remove underline display from anchor tag */
+.btn-dark:hover{
+  background-color: rgb(51, 51, 51);
+}
+
+a:link {
+  text-decoration: none;
+}
+

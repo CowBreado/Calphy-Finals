@@ -1,1 +1,177 @@
-    
+    <!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculus Based Physics Finals Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <!-- To implement the hiding and displaying of the pages within the same url-->
+    <style>
+        .page {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <main id="home" style="background-color:rgb(255, 255, 255)">
+        <!--    NAV    -->
+  <nav>
+    <div class="container--sidebar bg-dark"style="width: 18rem;">
+      <!--  Website Sidebar Contents  -->
+      <div class="text-center fw-bold">
+        <p class="text-white mb-0 p-2 text-center">CONTENTS</p>
+      </div>
+      
+      <a class ="text-light" href="#1" onclick="showPage('home')">
+        <div class="sidebar--item">
+          <p class="text-white mb-0 text-center">Home</p>
+        </div>
+      </a>
+      
+      <a class ="text-light" href="#2" onclick="showPage('archimedes')">
+        <div class="sidebar--item ">
+          <p class="text-white mb-0 text-center">Lesson 1: Archimedes Principle</p>
+      </div>
+      </a>
+
+      <a class ="text-light" href="pages/bernoulli.html">
+        <div class="sidebar--item">
+          <p class="text-white mb-0 text-center">Lesson 2: Bernoulli's Principle</p>
+        </div>
+      </a>
+
+      <div class="sidebar--item">
+        <p class="text-white mb-0 text-center">Practice Quiz</p>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+        <section id="content" class="page active" style="padding-left:4rem;padding-right:4rem">
+            <div class="container" id="home">
+                <h1 class="fw-semibold text-center  mt-3 mb-3 text-muted">Lesson 2: Bernoulli's Principle</h1>
+                <p class="text-muted text-center" style="font-style:italic">“Give me a place to stand, and I will move
+                    the world.”<br>-Archimedes</p>
+                <h3 class="text-dark mt-5 mb-3 fw-bold text-muted">Topics Covered</h3>
+                <ul>
+                    <li class="text-color-cus fw-semibold">
+                        What is Bernoulli's Principle
+                    </li>
+                    <li class="text-color-cus fw-semibold mt-3">
+                        Bernoulli's Principle Explanation
+                    </li>
+                    <li class="text-color-cus fw-semibold mt-3">
+                        Bernoulli's Principle Formula
+                    </li>
+                </ul>
+                </p>
+                <h3 class="mt-5 mb-3 fw-bold text-muted">What is Bernoulli's Principle</h3>
+                <p class="text-muted fw-semibold">
+                    Bernoulli's principle states that for an inviscid flow, an increase in the speed of the fluid occurs simultaneously with a decrease in pressure or a decrease in the fluid's potential energy. In simpler terms, faster-moving fluids exert lower pressure, and slower-moving fluids exert higher pressure. This principle is a consequence of the conservation of energy and helps explain phenomena like how airplane wings generate lift and how a Venturi tube works.
+                </p>
+
+                <p class="text-muted fw-semibold">
+                    <br>
+                    The key aspect of Bernoulli's principle lies in:
+                    <ul> 
+                        <li class="text-color-cus fw-semibold">
+                            <span class="fw-bold text-muted">Fluid speed and pressure: </span> When the speed of a fluid (like air or water) increases, its pressure decreases, and vice versa.
+                        </li>
+                        <li class="text-color-cus fw-semibold mt-2">
+                            <span class="fw-bold text-muted">Conservation of energy: </span> The principle is derived from the conservation of energy principle, which states that the total energy (pressure, kinetic, and potential) in a fluid system remains constant along a streamline.
+                        </li>
+                        <li class="text-color-cus fw-semibold mt-2">
+                            <span class="fw-bold text-muted">Application to fluids: </span> This applies to various fluids, including liquids and gases.
+                        </li>
+                    </ul>
+                </p>
+
+                <div class="text-center">
+                    <img src="https://cdn1.byjus.com/wp-content/uploads/2022/05/Bernoulli%E2%80%99s-Equation.png"
+                        alt="A scenic view" class="img-fluid rounded shadow mt-4 mb-3" style="height: 30rem;">
+                    <p class="text-muted text-center" style="font-style:italic">figure 2. Bernoulli’s-Equation
+                        Principle</p>
+                </div>
+
+                <p class="mt-4 text-muted fw-semibold">
+                    From the diagram above, we can see the derivation setup for <span class="fw-bold text-muted">Bernoulli’s Equation</span>, which describes the relationship between pressure, velocity, and height in a steady, incompressible fluid flow. When fluid moves from a wider area (point 1) to a narrower area (point 2) in a pipe of varying diameter and elevation, the pressure, velocity, and height are denoted as <em>P<sub>1</sub></em>, <em>v<sub>1</sub></em>, <em>y<sub>1</sub></em> and <em>P<sub>2</sub></em>, <em>v<sub>2</sub></em>, <em>y<sub>2</sub></em> respectively. 
+                    <br><br>
+                    By applying the <span class="fw-bold text-muted">conservation of energy</span> principle to the flow, we derive the famous Bernoulli’s Equation:
+                </p>
+
+                <div style="border: 2px solid #495057; width: 60%; margin: 0 auto; padding: 12px 4px; text-align: center; background: #f8f9fa; border-radius: 14px; box-shadow: 0 0 10px 0 rgba(0,0,0,0.04); min-height: 2.5rem;">
+                    <p class="text-muted fw-bold" style="text-align:center; margin: auto; font-size: 1.25rem;">
+                        <span style="font-family: 'Times New Roman', Times, serif;">
+                            P<sub>1</sub> + ½&nbsp;ρv<sub>1</sub><sup>2</sup> + ρgy<sub>1</sub> = P<sub>2</sub> + ½&nbsp;ρv<sub>2</sub><sup>2</sup> + ρgy<sub>2</sub>
+                        </span>
+                    </p>
+                </div>
+
+                <p class="text-muted fw-semibold" style="text-align:center; margin: auto;margin-top: 10px;">
+                    <span class="fw-bold">Where:</span><br>
+                    <span class="fw-normal">
+                        <em>P</em> is the fluid pressure, <em>ρ</em> (rho) is the fluid density, <em>v</em> is the fluid velocity, <em>y</em> is the height above a reference point, and <em>g</em> is acceleration due to gravity. <br>
+                        <br>
+                        <span class="fw-bold">Interpretation:</span> This equation states that the sum of the pressure energy, kinetic energy per unit volume, and potential energy per unit volume is constant along any streamline. When velocity increases, pressure drops, and vice versa—an idea that underlies airplane lift, the working of carburetors, atomizers, and much more.
+                    </span>
+                </p>
+                <h3 class="mt-5 mb-3 fw-bold text-muted">Bernoulli's Visual Example:</h3>
+                <p>
+                A video that demonstrate how Bernoulli's principle works.
+                </p>
+                <div class="d-flex justify-content-center align-items-center" style="width: 100%; min-height: 380px; margin-bottom: 2rem;">
+                    <div class="w-100" style="max-width: 1100px;">
+                        <!-- Placeholder for future Bernoulli's Principle video demonstration -->
+                        <div class="ratio ratio-16x9 rounded shadow border" style="background: #f8f9fa;">
+                            <!-- Replace the video source below in the future as needed -->
+                            <iframe 
+                                src="https://www.youtube.com/embed/DW4rItB20h4" 
+                                title="Bernoulli's Principle | Physics" 
+                                frameborder="0"
+                                allowfullscreen
+                                style="width: 100%; height: 100%; border-radius: 8px;">
+                            </iframe>
+                        </div>
+                        <div class="text-muted mt-2 text-center" style="font-style:italic;">
+                            (Future placeholder: Interactive or in-depth video demonstration for Bernoulli's Principle)
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+
+            <!--
+            https://byjus.com/physics/archimedes-principle/#what-is-archimedes-principle
+            <a class="btn btn-dark" href="#" onclick="showPage('linalg')">Learn More</a>
+            -->
+        </section>
+
+
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+<script>
+    function showPage(id) {
+        // hide all
+        document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+        // show one
+        document.getElementById(id).classList.add('active');
+    }
+</script>
+
+</body>
+
+</html>
