@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
   const {
     Engine,
     Render,
@@ -13,14 +12,20 @@ document.addEventListener("DOMContentLoaded", () => {
     Query,
   } = Matter;
 
+let width;
+let height;
+let world;
+
+document.addEventListener("DOMContentLoaded", () => {
   const WATER_DENSITY = 0.001;
   const WATER_LEVEL_PERCENT = 0.5;
 
   const engine = Engine.create();
+  world = engine.world;
 
   const container = document.getElementById("matter-container");
-  let width = container.clientWidth;
-  let height = container.clientHeight;
+  width = container.clientWidth;
+  height = container.clientHeight;
 
   const render = Render.create({
     element: container,
@@ -56,12 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   Composite.add(engine.world, [ground, water, mouseconstraint]);
-
-  const boxA = Bodies.rectangle(width * 0.8, 200, 80, 80, { density: 0.0015 });
-  const boxB = Bodies.rectangle(width * 0.3, 50, 80, 80, { density: 0.0007 });
-  const ball = Bodies.circle(width * 0.5, 100, 40, { density: 0.0009 });
-
-  Composite.add(engine.world, [boxA, boxB, ball]);
   Render.run(render);
 
   const runner = Runner.create();
@@ -141,14 +140,14 @@ document.addEventListener("DOMContentLoaded", () => {
     
     bodiesInWater.forEach(body => {
       if (body.isStatic || body.isSleeping) return;
-      applyBuoyancy(body, waterLine, engine.world);
+      applyBuoyancy(body, waterLine, world);
     });
   });
 
   Events.on(mouseconstraint, "mousemove", (event) => {
-    const g = engine.world.gravity.y * 9.81;
+    const g = world.gravity.y * 9.81;
 
-    const bodies = Composite.allBodies(engine.world).filter(body => body.label !== "water");
+    const bodies = Composite.allBodies(world).filter(body => body.label !== "water");
     const hovered_bodies = Query.point(bodies, event.mouse.position);
 
     const id = "object-details";
@@ -157,11 +156,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const body = hovered_bodies[0];
 
+      const name = body.label;
       const density = body.density * 1_000_000;
       const volume = body.area / 10_000;
       const force = WATER_DENSITY * g * volume * 1_000_000;
 
       document.getElementById(id).innerHTML = `
+        <div class="text--name fw-bold mb-2"><span>${name}</span></div>
         <div><strong>Density (kg/m<sup>3</sup>):</strong><span> ${density.toFixed(2)}</span></div>
         <div><strong>Volume (m<sup>3</sup>):</strong><span> ${volume.toFixed(2)}</span></div>
         <div><strong>Buoyant Force (N):</strong><span> ${force.toFixed(2)}</span></div>

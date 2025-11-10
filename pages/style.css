@@ -1,5 +1,6 @@
 html{
   font-size: larger;
+  background-color: grey;
 }
 body {
   overflow: hidden;
@@ -19,6 +20,10 @@ body {
 p, li{
   text-align: justify;
 }
+ul li{
+  margin-bottom: 1.5rem;
+}
+
 main {
   display: flex;
   margin-left: 0;
@@ -37,7 +42,13 @@ section::-webkit-scrollbar {
 
 }
 
-
+.card-title, .card-text{
+  font-size: medium;
+}
+.card-img-top {
+    height: 250px; /* or whatever fits your design */
+    object-fit: cover;
+}
 
 .container--sidebar {
   position: sticky;
@@ -70,20 +81,30 @@ section::-webkit-scrollbar {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 20rem;
+  height: 15rem;
+  width: 15rem;
 }
 
+.title-text-size{
+  font-size:16px;
+}
 
+.course-text-size{
+  font-size: 12px;
+}
 
-
-
+.card,card-body{
+  width: 80%;
+  height: 80px;
+}
 
 /* Remove underline display from anchor tag */
 .btn-dark:hover{
-  background-color: rgb(51, 51, 51);
+  background-color: rgb(112, 112, 112);
 }
 
 a:link {
   text-decoration: none;
 }
+
 

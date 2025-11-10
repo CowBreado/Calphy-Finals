@@ -67,9 +67,7 @@ section::-webkit-scrollbar {
 
 
 .box{
-  border-width:1px;
   border-style: solid;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
