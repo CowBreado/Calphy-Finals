@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔥 Archimedes-Bernoulli Principle Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>QUIZ: BERNOULLI'S PRINCIPLE & ARCHIMEDES' PRINCIPLE</h2>
+
+    <div id="progressTracker" class="tracker"></div>
+    
+    <div class="quiz-wrapper">
+      <div class="part-section" id="partA">
+        <h3 class="part-label">Part A: Bernoulli's Principle</h3>
+        <form id="quizFormA"></form>
+      </div>
+      
+      <div class="separator"></div>
+      
+      <div class="part-section" id="partB">
+        <h3 class="part-label">Part B: Archimedes' Principle </h3>
+        <form id="quizFormB"></form>
+        <button type="button" id="submitBtn">Submit Answer</button>
+      </div>
+    </div>
+    
+    <div class="result" id="result"></div>
+
+    <div class="theme-toggle">
+      <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider"></span>
+      </label>
+      <span id="modeLabel">🌞 Light Mode</span>
+    </div>
+    
+    <div id="confirmationPopup" class="confirmation-popup">
+      <p id="confirmationMessage"></p>
+      <div class="popup-buttons">
+        <button id="confirmYes">Yes</button>
+        <button id="confirmNo">No</button>
+      </div>
+    </div>
+
+   
+    <div class="confirmation-overlay" id="confirmationOverlay"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<style>
+body {
+  font-family: 'Times New Roman', Times, serif, sans-serif;
+  background-color: #eef5ff;
+  padding: 20px;
+}
+
+.container {
+  max-width: 650px;
+  background: white;
+  margin: auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #007bff;
+}
+
+.quiz-wrapper {
+  padding: 20px;
+  margin: 20px 0;
+  background: white;
+}
+
+.part-section {
+  padding: 15px;
+  margin: 10px 0;
+  background: white;
+  min-height: 200px;
+}
+
+.part-section#partB {
+  margin-top: 40px;
+}
+
+.part-label {
+  text-align: left;
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.separator {
+  display: none;
+}
+
+.question {
+  background: #f9f9f9;
+  padding: 15px;
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+label {
+  display: block;
+  margin: 6px 0;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  margin-right: 6px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #000;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-size: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.correct {
+  color: limegreen;
+  font-weight: bold;
+}
+
+.wrong {
+  color: red;
+  font-weight: bold;
+}
+
+.score-img {
+  display: block;
+  margin: 15px auto;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.tracker {
+  position: fixed;
+  top: 20%;
+  right: 40px;
+  display: grid;
+  grid-template-columns: repeat(6, 45px);
+  grid-template-rows: repeat(5, 45px);
+  gap: 10px;
+  row-gap: 20px;
+  column-gap: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.progress-box {
+  width: 45px;
+  height: 45px;
+  border: 2px solid gray;
+  border-radius: 8px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.progress-box:hover {
+  transform: scale(1.08);
+}
+
+.progress-box .box-bar {
+  height: 0;
+  transition: all 0.4s ease;
+}
+
+.box-number {
+  flex: 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: black;
+}
+
+.box-bar {
+  flex: 3;
+  width: 100%;
+  background: #ddd;
+  transition: background-color 0.3s ease;
+}
+
+.bar-selected {
+  background-color: #007bff;
+  height: 30%;
+}
+
+.bar-correct {
+  background-color: #4caf50;
+  height: 30%;
+}
+
+.bar-wrong {
+  background-color: #e74c3c;
+  height: 30%;
+}
+
+.blue-focus {
+  border: 2px solid #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  transition: all 0.8s ease;
+}
+
+body.dark-mode {
+  background-color: #1e1e2f;
+  color: #f4f4f4;
+}
+
+body.dark-mode .container {
+  background-color: #2b2b3d;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode h2 {
+  color: #66aaff;
+}
+
+body.dark-mode .question {
+  background-color: #35354d;
+  border-color: #444;
+}
+
+body.dark-mode label {
+  color: #e6e6e6;
+}
+
+body.dark-mode button {
+  background-color: #007bff;
+  color: white;
+}
+
+body.dark-mode .progress-box {
+  background-color: #2e2e40;
+  border-color: #666;
+}
+
+body.dark-mode .box-number {
+  background: #2e2e40;
+  color: #f1f1f1;
+}
+
+body.dark-mode .quiz-wrapper {
+  background-color: #2b2b3d;
+}
+
+body.dark-mode .part-section {
+  background-color: #35354d;
+}
+
+body.dark-mode .part-label {
+  color: #f1f1f1;
+}
+
+body.dark-mode .theme-toggle {
+  background: rgba(40, 40, 60, 0.9);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle {
+  position: fixed;
+  top: calc(20vh + 350px); /* Below the tracker (20vh for tracker top + ~350px for tracker height + spacing) */
+  right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 1001;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 26px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+body.dark-mode .correct {
+  color: #7CFC00 !important;  
+  font-weight: bold;
+}
+
+body.dark-mode .wrong {
+  color: #ff6b6b !important;  
+  font-weight: bold;
+}
+
+body.dark-mode input[type="radio"]:disabled {
+  filter: brightness(1.2);
+}
+
+body.dark-mode .bar-correct {
+  background-color: #32cd32 !important;
+}
+
+body.dark-mode .bar-wrong {
+  background-color: #ff5555 !important;
+}
+
+body.dark-mode .bar-selected {
+  background-color: #3399ff !important;
+}
+
+body.dark-mode .tracker {
+  background: rgba(40, 40, 60, 0.9);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+
+@media (max-width: 700px) {
+  .tracker {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    transform: none;
+    margin-top: 15px;
+    background: none;
+    box-shadow: none;
+  }
+}
+
+body, .container, .question, label, .progress-box, .bar-correct, .bar-wrong, .bar-selected {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.confirmation-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 280px;
+  max-width: 360px;
+  padding: 20px 25px;
+  background-color: #f9f9f9;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  z-index: 2000;
+  display: none;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.confirmation-popup .popup-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.confirmation-popup button {
+  padding: 6px 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.confirmation-popup button#confirmYes {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.confirmation-popup button#confirmNo {
+  background-color: #f44336;
+  color: white;
+}
+
+.confirmation-popup button:hover {
+  transform: scale(1.05);
+}
+
+/* Overlay */
+.confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 1999;
+  display: none;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -45%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* Dark mode */
+body.dark-mode .confirmation-popup {
+  background-color: #2c2c2c;
+  color: #eee;
+}
+
+body.dark-mode .confirmation-popup button#confirmYes {
+  background-color: #28a745;
+}
+
+body.dark-mode .confirmation-popup button#confirmNo {
+  background-color: #d9534f;
+}
+</style>
+
+<script>
+  // Shuffle array
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+const questions = [
+  {
+    question: "When a fluid moves faster, its pressure becomes ____.",
+    choices: ["Higher", "Lower", "The same", "Zero"],
+    correct: "Lower"
+  },
+  {
+    question: "Bernoulli’s Principle is based on the conservation of ____.",
+    choices: ["Mass", "Energy", "Temperature", "Momentum"],
+    correct: "Energy"
+  },
+  {
+    question: "The term 1/2pv² in Bernoulli’s equation represents ____ energy per unit volume.",
+    choices: ["Potential", "Kinetic", "Chemical", "Elastic"],
+    correct: "Kinetic"
+  },
+  {
+    question: "In the equation P + 1/2pv² + pgh = constant ,  P  is the ____ energy term.",
+    choices: ["Pressure", "Gravity", "Heat", "Motion"],
+    correct: "Pressure"
+  },
+  {
+    question: "Airplane wings produce lift because air moves ____ over the top surface.",
+    choices: ["Slower", "Faster", "Unevenly", "Randomly"],
+    correct: "Faster"
+  },
+  {
+    question: "Water flowing through a narrow pipe speeds up. According to Bernoulli, its pressure ____.",
+    choices: ["Increases", "Decreases", "Doubles", "Stays equal"],
+    correct: "Decreases"
+  },
+  {
+    question: "A ping-pong ball can hang in mid-air inside a stream of air from a blower because of ____.",
+    choices: ["Gravity", "Bernoulli’s Principle", "Magnetism", "Heat"],
+    correct: "Bernoulli’s Principle"
+  },
+  {
+    question: "A roof can lift during a strong wind because pressure above the roof becomes ____.",
+    choices: ["Higher", "Lower", "Equal", "Constant"],
+    correct: "Lower"
+  },
+  {
+    question: "Bernoulli’s Principle applies to ____ fluids.",
+    choices: ["Only gases", "Only liquids", "All moving fluids", "Solids"],
+    correct: "All moving fluids"
+  },
+  {
+    question: "When you blow across the top of a straw dipped in juice, the liquid rises because the air pressure above the straw ____.",
+    choices: ["Increases", "Decreases", "Becomes zero", "Reverses"],
+    correct: "Decreases"
+  },
+  {
+    question: "A smooth pipe compared to a rough one at equal flow has ____ pressure loss.",
+    choices: ["Greater", "Smaller", "Same", "Variable"],
+    correct: "Smaller"
+  },
+  {
+    question: "In a Venturi meter, pressure is lowest at the ____ section.",
+    choices: ["Wide", "Narrow", "Entry", "Exit"],
+    correct: "Narrow"
+  },
+  {
+    question: "Faster air above a curve in a baseball causes the ball to curve because of ____ pressure difference.",
+    choices: ["Upward", "Lateral", "Equal", "Downward"],
+    correct: "Lateral"
+  },
+  {
+    question: "Bernoulli’s equation cannot be used accurately if the fluid is very ____.",
+    choices: ["Viscous", "Cold", "Transparent", "Heavy"],
+    correct: "Viscous"
+  },
+  {
+    question: "When fluid speed decreases, its pressure energy ____.",
+    choices: ["Decreases", "Increases", "Stays constant", "Vanishes"],
+    correct: "Increases"
+  }
+];
+
+/*
+Archimedes Principle
+1. Archimedes’ Principle states that an object in a fluid experiences an upward force equal to the ____ of the fluid displaced.
+A. Volume B. Weight  C. Density D. Pressure
+
+2. The buoyant force acts in the ____ direction.
+A. Downward B. Upward  C. Sideways D. Variable
+
+3. The formula for buoyant force is F = pgV is the ____ of the fluid.
+A. Pressure B. Density  C. Volume D. Weight
+
+4. An object floats if its weight is ____ to the buoyant force.
+A. Greater B. Equal  C. Less D. Opposite
+
+5. A stone sinks because its density is ____ than the fluid’s.
+A. Greater  B. Less C. Equal D. Zero
+
+6. A boat floats deeper when more cargo is added because it must displace ____ water.
+A. More  B. Less C. The same amount D. No
+
+7. The apparent loss of weight of an object in water equals the ____.
+A. True weight B. Buoyant force  C. Pressure difference D. Volume
+
+8. A hydrometer sinks deeper in a liquid of ____ density.
+A. High B. Low  C. Same D. Constant
+
+9. Ice floats because the density of ice is ____ than that of water.
+A. Greater B. Less  C. Equal D. Changing
+
+10. A submarine rises when it replaces water in its ballast tanks with ____.
+A. Oil B. Air  C. Steam D. Salt
+
+11. When a floating object is moved to denser fluid, the volume submerged ____.
+A. Increases B. Decreases  C. Remains D. Doubles
+
+12. If an object’s weight is smaller than the buoyant force, it will ____.
+A. Float upward  B. Stay still C. Sink D. Rotate
+
+13. A metal ship floats even though metal is dense because the ship’s average density (including air inside) is ____ than water.
+A. Greater B. Less  C. Equal D. Infinite
+
+14. When a cube of ice melts in water, the water level ____.
+A. Rises B. Falls C. Stays the same  D. Oscillates
+
+15. Archimedes discovered his principle while noticing water ____ from a bath.
+A. Evaporating B. Overflowing  C. Cooling D. Spinning
+
+ Archimedes’ Principle – Answer Key
+1. B
+2. B
+3. B
+4. B
+5. A
+6. A
+7. B
+8. B
+9. B
+10. B
+11. B
+12. A
+13. B
+14. C
+15. B
+*/
+
+
+
+// Archimedes Principle Questions
+
+
+const archimedesQuestions = [
+  {
+    question: "Archimedes' Principle states that an object in a fluid experiences an upward force equal to the ____ of the fluid displaced.",
+    choices: ["Volume", "Weight", "Density", "Pressure"],
+    correct: "Weight"
+  },
+  {
+    question: "The buoyant force acts in the ____ direction.",
+    choices: ["Downward", "Upward", "Sideways", "Variable"],
+    correct: "Upward"
+  },
+  {
+    question: "The formula for buoyant force is F = pgV is the ____ of the fluid.",
+    choices: ["Pressure", "Density", "Volume", "Weight"],
+    correct: "Density"
+  },
+  {
+    question: "An object floats if its weight is ____ to the buoyant force.",
+    choices: ["Greater", "Equal", "Less", "Opposite"],
+    correct: "Equal"
+  },
+  {
+    question: "A stone sinks because its density is ____ than the fluid's.",
+    choices: ["Greater", "Less", "Equal", "Zero"],
+    correct: "Greater"
+  },
+  {
+    question: "A boat floats deeper when more cargo is added because it must displace ____ water.",
+    choices: ["More", "Less", "The same amount", "No"],
+    correct: "More"
+  },
+  {
+    question: "The apparent loss of weight of an object in water equals the ____.",
+    choices: ["True weight", "Buoyant force", "Pressure difference", "Volume"],
+    correct: "Buoyant force"
+  },
+  {
+    question: "A hydrometer sinks deeper in a liquid of ____ density.",
+    choices: ["High", "Low", "Same", "Constant"],
+    correct: "Low"
+  },
+  {
+    question: "Ice floats because the density of ice is ____ than that of water.",
+    choices: ["Greater", "Less", "Equal", "Changing"],
+    correct: "Less"
+  },
+  {
+    question: "A submarine rises when it replaces water in its ballast tanks with ____.",
+    choices: ["Oil", "Air", "Steam", "Salt"],
+    correct: "Air"
+  },
+  {
+    question: "When a floating object is moved to denser fluid, the volume submerged ____.",
+    choices: ["Increases", "Decreases", "Remains", "Doubles"],
+    correct: "Decreases"
+  },
+  {
+    question: "If an object's weight is smaller than the buoyant force, it will ____.",
+    choices: ["Float upward", "Stay still", "Sink", "Rotate"],
+    correct: "Float upward"
+  },
+  {
+    question: "A metal ship floats even though metal is dense because the ship's average density (including air inside) is ____ than water.",
+    choices: ["Greater", "Less", "Equal", "Infinite"],
+    correct: "Less"
+  },
+  {
+    question: "When a cube of ice melts in water, the water level ____.",
+    choices: ["Rises", "Falls", "Stays the same", "Oscillates"],
+    correct: "Stays the same"
+  },
+  {
+    question: "Archimedes discovered his principle while noticing water ____ from a bath.",
+    choices: ["Evaporating", "Overflowing", "Cooling", "Spinning"],
+    correct: "Overflowing"
+  }
+];
+
+let quizQuestions = shuffle(questions).slice(0, 15);
+let archimedesQuizQuestions = shuffle(archimedesQuestions).slice(0, 15);
+
+// Helper function to generate questions for a part
+function generatePart(questions, formId, prefix) {
+  const quizForm = document.getElementById(formId);
+  quizForm.innerHTML = "";
+
+  questions.forEach((q, i) => {
+    const div = document.createElement("div");
+    div.classList.add("question");
+    div.id = `${prefix}-question-${i}`;
+    div.innerHTML = `<h4>${i + 1}. ${q.question}</h4>`;
+
+    shuffle([...q.choices]).forEach(choice => {
+      div.innerHTML += `
+        <label>
+          <input type="radio" name="${prefix}-q${i}" value="${choice}"> ${choice}
+        </label>
+      `;
+    });
+
+    div.innerHTML += `<p class="correct-answer" style="display:none; color:limegreen; font-weight:bold;"></p>`;
+    quizForm.appendChild(div);
+  });
+
+  quizForm.onchange = (event) => {
+    if (event.target.type === "radio") {
+      const index = parseInt(event.target.name.replace(`${prefix}-q`, ""));
+      const bar = document.getElementById(`${prefix}-box-${index}`)?.querySelector(".box-bar");
+      if (bar) bar.classList.add("bar-selected");
+    }
+  };
+}
+
+// Generate quiz
+function generateQuiz() {
+  const tracker = document.getElementById("progressTracker");
+  tracker.innerHTML = "";
+
+  // Generate Part A (Bernoulli)
+  generatePart(quizQuestions, "quizFormA", "partA");
+
+  // Generate Part B (Archimedes)
+  generatePart(archimedesQuizQuestions, "quizFormB", "partB");
+
+  // Create progress tracker boxes for Part A
+  quizQuestions.forEach((q, i) => {
+    const box = document.createElement("div");
+    box.classList.add("progress-box");
+    box.id = `partA-box-${i}`;
+    box.innerHTML = `
+      <div class="box-number">A${i + 1}</div>
+      <div class="box-bar"></div>
+    `;
+
+    box.onclick = () => {
+      const questionEl = document.getElementById(`partA-question-${i}`);
+      questionEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      document.querySelectorAll(".question").forEach(q => q.classList.remove("blue-focus"));
+      questionEl.classList.add("blue-focus");
+      setTimeout(() => questionEl.classList.remove("blue-focus"), 3000);
+    };
+
+    tracker.appendChild(box);
+  });
+
+  // Create progress tracker boxes for Part B
+  archimedesQuizQuestions.forEach((q, i) => {
+    const box = document.createElement("div");
+    box.classList.add("progress-box");
+    box.id = `partB-box-${i}`;
+    box.innerHTML = `
+      <div class="box-number">B${i + 1}</div>
+      <div class="box-bar"></div>
+    `;
+
+    box.onclick = () => {
+      const questionEl = document.getElementById(`partB-question-${i}`);
+      questionEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      document.querySelectorAll(".question").forEach(q => q.classList.remove("blue-focus"));
+      questionEl.classList.add("blue-focus");
+      setTimeout(() => questionEl.classList.remove("blue-focus"), 3000);
+    };
+
+    tracker.appendChild(box);
+  });
+}
+
+// Helper function to get unanswered questions for a part
+function getUnanswered(questions, prefix) {
+  return questions
+    .map((_, i) => !document.querySelector(`input[name="${prefix}-q${i}"]:checked`) ? i + 1 : null)
+    .filter(v => v !== null);
+}
+
+// Helper function to check and mark answers for a part
+function checkPart(questions, prefix, partName) {
+  let score = 0;
+
+  questions.forEach((q, i) => {
+    const selected = document.querySelector(`input[name="${prefix}-q${i}"]:checked`);
+    const questionDiv = document.getElementById(`${prefix}-question-${i}`);
+    const labels = questionDiv.querySelectorAll("label");
+    const bar = document.getElementById(`${prefix}-box-${i}`)?.querySelector(".box-bar");
+
+    if (bar) bar.className = "box-bar"; // reset
+
+    labels.forEach(label => label.classList.remove("correct", "wrong"));
+    labels.forEach(label => label.querySelector("input").disabled = true);
+
+    if (selected) {
+      if (selected.value.trim() === q.correct) {
+        score++;
+        selected.parentElement.classList.add("correct");
+        if (bar) bar.classList.add("bar-correct");
+      } else {
+        selected.parentElement.classList.add("wrong");
+        if (bar) bar.classList.add("bar-wrong");
+        labels.forEach(label => {
+          if (label.querySelector("input").value.trim() === q.correct) label.classList.add("correct");
+        });
+      }
+    } else {
+      if (bar) bar.style.background = "#ddd";
+      labels.forEach(label => {
+        if (label.querySelector("input").value.trim() === q.correct) label.classList.add("correct");
+      });
+    }
+  });
+
+  return { score, partName };
+}
+
+// Check answers
+async function checkAnswers() {
+  // Get unanswered questions for confirmation
+  const partAUnanswered = getUnanswered(quizQuestions, "partA");
+  const partBUnanswered = getUnanswered(archimedesQuizQuestions, "partB");
+
+  const allUnanswered = [];
+  if (partAUnanswered.length > 0) {
+    allUnanswered.push(...partAUnanswered.map(n => `A${n}`));
+  }
+  if (partBUnanswered.length > 0) {
+    allUnanswered.push(...partBUnanswered.map(n => `B${n}`));
+  }
+
+  const proceed = await showConfirmation(
+    allUnanswered.length > 0
+      ? `You haven't answered question${allUnanswered.length > 1 ? "s" : ""}: ${allUnanswered.join(", ")}.\n\nAre you sure you want to submit?`
+      : "Are you sure you want to submit your answers?"
+  );
+  if (!proceed) {
+    return;
+  }
+
+  // Now check and mark answers
+  const partA = checkPart(quizQuestions, "partA", "Part A");
+  const partB = checkPart(archimedesQuizQuestions, "partB", "Part B");
+
+  const totalScore = partA.score + partB.score;
+  const totalQuestions = quizQuestions.length + archimedesQuizQuestions.length;
+
+  let message = "", image = "";
+  if (totalScore <= 6) { message = "😢 Low score. Try again!"; image = "image/sad.jpg"; }
+  else if (totalScore <= 10) { message = "😐 You'll do better next time!"; image = "image/half.jpg"; }
+  else if (totalScore <= 18) { message = "🔥 You passed!"; image = "image/moderate.jpg"; }
+  else { message = "🏆 Perfect score!"; image = "image/perfect.jpg"; }
+
+  const resultEl = document.getElementById("result");
+  resultEl.innerHTML = `
+    <h3>Your Scores:</h3>
+    <p><strong>Part A (Bernoulli):</strong> ${partA.score} / ${quizQuestions.length}</p>
+    <p><strong>Part B (Archimedes):</strong> ${partB.score} / ${archimedesQuizQuestions.length}</p>
+    <h3>Total Score: ${totalScore} / ${totalQuestions}</h3>
+    <p>${message}</p>
+    <img src="${image}" class="score-img" alt="Result" onerror="this.style.display='none';">
+    <br><button onclick="restartQuiz()">Try Again</button>
+  `;
+  resultEl.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+// Confirmation popup
+function showConfirmation(message) {
+  return new Promise(resolve => {
+    const popup = document.getElementById("confirmationPopup");
+    const overlay = document.getElementById("confirmationOverlay");
+    const messageEl = document.getElementById("confirmationMessage");
+    const yesBtn = document.getElementById("confirmYes");
+    const noBtn = document.getElementById("confirmNo");
+
+    messageEl.textContent = message;
+    popup.style.display = "block";
+    overlay.style.display = "block";
+
+    function cleanUp() {
+      popup.style.display = "none";
+      overlay.style.display = "none";
+      yesBtn.removeEventListener("click", onYes);
+      noBtn.removeEventListener("click", onNo);
+    }
+
+    function onYes() { cleanUp(); resolve(true); }
+    function onNo() { cleanUp(); resolve(false); }
+
+    yesBtn.addEventListener("click", onYes);
+    noBtn.addEventListener("click", onNo);
+    overlay.addEventListener("click", () => { cleanUp(); resolve(false); }, { once: true });
+  });
+}
+
+// Restart quiz
+function restartQuiz() {
+  document.getElementById("result").innerHTML = "";
+  quizQuestions = shuffle(questions).slice(0, 15);
+  archimedesQuizQuestions = shuffle(archimedesQuestions).slice(0, 15);
+  generateQuiz();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Dark mode toggle
+const toggle = document.getElementById("darkModeToggle");
+const modeLabel = document.getElementById("modeLabel");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-mode");
+  toggle.checked = true;
+  modeLabel.textContent = "🌙 Dark Mode";
+}
+
+toggle.addEventListener("change", () => {
+  if (toggle.checked) {
+    document.body.classList.add("dark-mode");
+    localStorage.setItem("theme", "dark");
+    modeLabel.textContent = "🌙 Dark Mode";
+  } else {
+    document.body.classList.remove("dark-mode");
+    localStorage.setItem("theme", "light");
+    modeLabel.textContent = "🌞 Light Mode";
+  }
+});
+
+window.onload = generateQuiz;
+document.getElementById("submitBtn").addEventListener("click", checkAnswers);
+
+</script>
