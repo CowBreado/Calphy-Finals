@@ -42,13 +42,12 @@ section::-webkit-scrollbar {
 
 }
 
-.card-title, .card-text{
+
+.polite-card .card-title, .polite-card .card-text{
   font-size: medium;
+  margin: 0.5rem 0; 
 }
-.card-img-top {
-    height: 250px; /* or whatever fits your design */
-    object-fit: cover;
-}
+
 
 .container--sidebar {
   position: sticky;
@@ -93,9 +92,8 @@ section::-webkit-scrollbar {
   font-size: 12px;
 }
 
-.card,card-body{
-  width: 80%;
-  height: 80px;
+.card, .card-body {
+  width: 100%; 
 }
 
 /* Remove underline display from anchor tag */
@@ -107,3 +105,29 @@ a:link {
   text-decoration: none;
 }
 
+
+.polite-card{
+  margin-top: 20px;
+  max-width: min(90vw, 400px); /* Keeps it responsive but with a max-width */
+  display: flex;
+  flex-direction:column;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 450px; 
+  border: 1px solid rgba(0,0,0,.125); 
+  background-color: #fff; 
+}
+
+.polite-card img {
+  height: 350px; 
+  object-fit: cover;
+  width: 100%; 
+  display: block; 
+}
+.polite-card .card-body {
+  flex-grow: 1; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  padding: 1rem;
+}
