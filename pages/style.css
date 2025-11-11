@@ -1,6 +1,5 @@
 html{
   font-size: larger;
-  background-color: grey;
 }
 body {
   overflow: hidden;
@@ -42,21 +41,12 @@ section::-webkit-scrollbar {
 
 }
 
-
-.polite-card .card-title, .polite-card .card-text{
-  font-size: medium;
-  margin: 0.5rem 0; 
-}
-
-
 .container--sidebar {
   position: sticky;
   inset: 0;
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
 }
 
 .sidebar--item {
@@ -73,63 +63,51 @@ section::-webkit-scrollbar {
   cursor: pointer;
 }
 
-
 .box{
-  border-width:1px;
   border-style: solid;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 15rem;
-  width: 15rem;
+  height: 20rem;
 }
-
-.title-text-size{
-  font-size:16px;
-}
-
-.course-text-size{
-  font-size: 12px;
-}
-
-.card, .card-body {
-  width: 100%; 
-}
-
-/* Remove underline display from anchor tag */
-.btn-dark:hover{
-  background-color: rgb(112, 112, 112);
-}
-
 a:link {
   text-decoration: none;
 }
 
 
-.polite-card{
-  margin-top: 20px;
-  max-width: min(90vw, 400px); /* Keeps it responsive but with a max-width */
+.polite-card {
   display: flex;
-  flex-direction:column;
-  border-radius: 8px;
-  overflow: hidden;
-  height: 450px; 
-  border: 1px solid rgba(0,0,0,.125); 
-  background-color: #fff; 
+  flex-direction: column;
+  height: 100%; 
+  border-radius: .25rem;
 }
 
 .polite-card img {
-  height: 350px; 
-  object-fit: cover;
   width: 100%; 
-  display: block; 
+  height: 300px; 
+  object-fit: cover;
+  border-top-left-radius: calc(.25rem - 1px);
+  border-top-right-radius: calc(.25rem - 1px);
 }
+
 .polite-card .card-body {
   flex-grow: 1; 
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: flex-end; 
   padding: 1rem;
+  border-bottom-left-radius: calc(.25rem - 1px);
+  border-bottom-right-radius: calc(.25rem - 1px);
+}
+
+.row.g-4 {
+    align-items: stretch; 
+}
+
+.card-title{
+  font-size: 16px;
+}
+.card-text{
+  font-size: 14px;
 }
